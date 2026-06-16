@@ -5,54 +5,84 @@
 <title>The Achievement List</title>
 
 <style>
+/* THEME SYSTEM VARIABLES */
 :root {
-    --bg-color: #0a0a0a;
-    --card-bg: #151515;
-    --text-main: #ffffff;
+    --bg-gradient: linear-gradient(-45deg, #0a0a0a, #111111, #181022, #0a0a0a);
+    --header-bg: linear-gradient(90deg, #ff2d2d, #7a5cff);
+    --text-main: white;
     --text-sub: #aaa;
-    --accent: #ff2d2d;
-    --border: rgba(255,255,255,0.1);
+    --card-bg: #151515;
+    --border: rgba(255,255,255,0.05);
 }
 
 body {
     margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: Arial, sans-serif;
     color: var(--text-main);
-    background: var(--bg-color);
-    padding: 40px 20px;
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    animation: bgMove 15s ease infinite;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+    padding-bottom: 50px;
 }
 
-header { text-align: center; margin-bottom: 50px; }
-h1 { font-size: 48px; margin: 0; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
-p { color: var(--text-sub); margin-top: 10px; font-size: 18px; }
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-.list {
+/* HEADER */
+header {
     width: 100%;
+    padding: 35px 0;
+    text-align: center;
+    background: var(--header-bg);
+    margin-bottom: 40px;
+}
+
+h1 { margin: 0; font-size: 52px; color: white; text-transform: uppercase; letter-spacing: 2px; }
+h2 { margin: 8px 0 0; font-weight: normal; color: #ddd; font-size: 20px; }
+
+/* LIST CONFIGURATION */
+.list {
+    width: 90%;
     max-width: 900px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     background: var(--card-bg);
-    padding: 25px;
     border-radius: 16px;
-    border: 1px solid var(--border);
+    padding: 24px;
     transition: transform 0.2s, border-color 0.2s;
+    border: 1px solid var(--border);
 }
 
 .card:hover {
-    border-color: var(--accent);
-    transform: scale(1.01);
+    transform: scale(1.015);
+    border-color: #ff2d2d;
 }
 
-.name { font-size: 28px; font-weight: bold; color: white; margin-bottom: 8px; }
-.desc { color: var(--text-sub); line-height: 1.5; font-size: 16px; }
+.name {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
 
+.desc {
+    font-size: 16px;
+    color: var(--text-sub);
+    line-height: 1.5;
+}
 </style>
 </head>
 
@@ -60,18 +90,18 @@ p { color: var(--text-sub); margin-top: 10px; font-size: 18px; }
 
 <header>
     <h1>The Achievement List</h1>
-    <p>Documenting my most significant progression milestones.</p>
+    <h2>A geometry dash list of the greatest achievements ever.</h2>
 </header>
 
 <div class="list">
     <div class="card">
         <div class="name">#1 GRIEF 97%</div>
-        <div class="desc">My current peak achievement. Pushing to close out the final few percent of this monumental challenge.</div>
+        <div class="desc">An unbelievable run to the final spikes. Pushing through the nerves to close out one of the most brutal levels ever created.</div>
     </div>
     
     <div class="card">
         <div class="name">#2 KOCMOC UNLEASHED 19-91%</div>
-        <div class="desc">A massive progression run that tests consistency and mechanical endurance.</div>
+        <div class="desc">A sweeping run across the absolute hardest stretches of the level, demonstrating world-class consistency and massive stamina.</div>
     </div>
 </div>
 
