@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Achievement List</title>
 
+<style>
+:root {
+    --bg-color: #0a0a0a;
+    --text-main: #ffffff;
+    --accent: #ff2d2d;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+header { text-align: center; margin-bottom: 40px; }
+h1 { font-size: 48px; margin: 0; color: var(--accent); }
+
+.list {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background: #151515;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #333;
+    text-align: center;
+}
+
+.name { font-size: 32px; font-weight: bold; margin-bottom: 10px; }
+.meta { color: #888; font-size: 18px; }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>The Achievement List</h1>
+</header>
+
+<div class="list">
+    <div class="card">
+        <div class="name">#1 GRIEF 97%</div>
+        <div class="meta">Achievement Progress Tracking</div>
+    </div>
+</div>
+
+</body>
+</html>
