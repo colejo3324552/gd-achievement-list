@@ -111,9 +111,10 @@ h2 { margin: 8px 0 0; font-weight: normal; color: #ddd; font-size: 20px; }
     border: 1px solid var(--border);
 }
 
+/* Dynamic custom border matching the hoverColor property from JavaScript */
 .card:hover {
     transform: scale(1.015);
-    border-color: #ff2d2d;
+    border-color: var(--hover-color, #ff2d2d);
 }
 
 .name {
@@ -146,10 +147,10 @@ h2 { margin: 8px 0 0; font-weight: normal; color: #ddd; font-size: 20px; }
 <div class="list" id="list"></div>
 
 <script>
-// Achievement database without descriptions or score metrics
+// Added a unique hoverColor property to each item to customize the border accent colors
 const achievements = [
-    { id: 1, name: "GRIEF 97%" },
-    { id: 2, name: "KOCMOC UNLEASHED 19-91%" }
+    { id: 1, name: "GRIEF 97%", hoverColor: "#800020" },          // Maroon color Hex
+    { id: 2, name: "KOCMOC UNLEASHED 19-91%", hoverColor: "#ffffff" } // White color Hex
 ];
 
 function render() {
@@ -159,28 +160,26 @@ function render() {
 
     listElement.innerHTML = "";
 
-    // Filter items based on search input
     let filtered = achievements.filter(item => 
         item.name.toLowerCase().includes(searchVal)
     );
 
-    // Sort items without score variables
     if (sortVal === "alphabetical") {
         filtered.sort((a, b) => a.name.localeCompare(b.name));
     } else {
         filtered.sort((a, b) => a.id - b.id);
     }
 
-    // Dynamic generation of cards
     filtered.forEach(item => {
         const card = document.createElement("div");
         card.className = "card";
+        // Passing the custom hover color straight into the card's style system
+        card.style.setProperty('--hover-color', item.hoverColor);
         card.innerHTML = `<div class="name">#${item.id} ${item.name}</div>`;
         listElement.appendChild(card);
     });
 }
 
-// Initial display load
 render();
 </script>
 
