@@ -158,11 +158,10 @@ h2 { margin: 8px 0 0; font-weight: normal; color: #ddd; font-size: 20px; }
 <div class="list" id="list"></div>
 
 <script>
-// Database updated with player names and the requested light purplish-blue hex for Society
 const achievements = [
     { id: 1, name: "GRIEF 97%", player: "Doggie", hoverColor: "#800020" },
     { id: 2, name: "KOCMOC UNLEASHED 19-91%", player: "Arshadow", hoverColor: "#ffffff" },
-    { id: 3, name: "Society 72%", player: "wPopoff", hoverColor: "#9fa8da" }
+    { id: 3, name: "Society 72%", player: "wPopoff", hoverColor: "#7080ec" } // Updated to a slightly deeper, bluer tone
 ];
 
 function render() {
@@ -172,7 +171,6 @@ function render() {
 
     listElement.innerHTML = "";
 
-    // Search matches either the level name or the player name
     let filtered = achievements.filter(item => 
         item.name.toLowerCase().includes(searchVal) || 
         item.player.toLowerCase().includes(searchVal)
