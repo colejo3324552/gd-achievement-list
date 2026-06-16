@@ -7,42 +7,52 @@
 <style>
 :root {
     --bg-color: #0a0a0a;
+    --card-bg: #151515;
     --text-main: #ffffff;
+    --text-sub: #aaa;
     --accent: #ff2d2d;
+    --border: rgba(255,255,255,0.1);
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     color: var(--text-main);
-    background-color: var(--bg-color);
+    background: var(--bg-color);
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
 }
 
-header { text-align: center; margin-bottom: 40px; }
-h1 { font-size: 48px; margin: 0; color: var(--accent); }
+header { text-align: center; margin-bottom: 50px; }
+h1 { font-size: 48px; margin: 0; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
+p { color: var(--text-sub); margin-top: 10px; font-size: 18px; }
 
 .list {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 .card {
-    background: #151515;
-    padding: 30px;
+    background: var(--card-bg);
+    padding: 25px;
     border-radius: 16px;
-    border: 1px solid #333;
-    text-align: center;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, border-color 0.2s;
 }
 
-.name { font-size: 32px; font-weight: bold; margin-bottom: 10px; }
-.meta { color: #888; font-size: 18px; }
+.card:hover {
+    border-color: var(--accent);
+    transform: scale(1.01);
+}
+
+.name { font-size: 28px; font-weight: bold; color: white; margin-bottom: 8px; }
+.desc { color: var(--text-sub); line-height: 1.5; font-size: 16px; }
+
 </style>
 </head>
 
@@ -50,16 +60,18 @@ h1 { font-size: 48px; margin: 0; color: var(--accent); }
 
 <header>
     <h1>The Achievement List</h1>
+    <p>Documenting my most significant progression milestones.</p>
 </header>
 
 <div class="list">
     <div class="card">
         <div class="name">#1 GRIEF 97%</div>
-        <div class="meta">Achievement Progress Tracking</div>
+        <div class="desc">My current peak achievement. Pushing to close out the final few percent of this monumental challenge.</div>
     </div>
+    
     <div class="card">
         <div class="name">#2 KOCMOC UNLEASHED 19-91%</div>
-        <div class="meta">Achievement Progress Tracking</div>
+        <div class="desc">A massive progression run that tests consistency and mechanical endurance.</div>
     </div>
 </div>
 
