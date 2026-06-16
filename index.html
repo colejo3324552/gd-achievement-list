@@ -103,15 +103,17 @@ h2 { margin: 8px 0 0; font-weight: normal; color: #ddd; font-size: 20px; }
 
 .card {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     background: var(--card-bg);
     border-radius: 16px;
     padding: 24px;
     transition: transform 0.2s, border-color 0.2s;
     border: 1px solid var(--border);
+    gap: 6px;
 }
 
-/* Dynamic custom border matching the hoverColor property from JavaScript */
 .card:hover {
     transform: scale(1.015);
     border-color: var(--hover-color, #ff2d2d);
@@ -120,6 +122,15 @@ h2 { margin: 8px 0 0; font-weight: normal; color: #ddd; font-size: 20px; }
 .name {
     font-size: 28px;
     font-weight: bold;
+    color: white;
+}
+
+.achieved-by {
+    font-size: 16px;
+    color: var(--text-sub);
+}
+
+.achieved-by strong {
     color: white;
 }
 </style>
@@ -134,11 +145,11 @@ h2 { margin: 8px 0 0; font-weight: normal; color: #ddd; font-size: 20px; }
 
 <div class="utility-bar">
     <div class="search-container">
-        <input id="search" placeholder="Search achievements..." onkeyup="render()">
+        <input id="search" placeholder="Search achievements or players..." onkeyup="render()">
     </div>
     <div class="sort-container">
         <select id="sort" onchange="render()">
-            <option value="placement">Sort: Placement (#1 - #2)</option>
+            <option value="placement">Sort: Placement (#1 - #3)</option>
             <option value="alphabetical">Sort: Name (A-Z)</option>
         </select>
     </div>
@@ -147,10 +158,11 @@ h2 { margin: 8px 0 0; font-weight: normal; color: #ddd; font-size: 20px; }
 <div class="list" id="list"></div>
 
 <script>
-// Added a unique hoverColor property to each item to customize the border accent colors
+// Database updated with player names and the requested light purplish-blue hex for Society
 const achievements = [
-    { id: 1, name: "GRIEF 97%", hoverColor: "#800020" },          // Maroon color Hex
-    { id: 2, name: "KOCMOC UNLEASHED 19-91%", hoverColor: "#ffffff" } // White color Hex
+    { id: 1, name: "GRIEF 97%", player: "Doggie", hoverColor: "#800020" },
+    { id: 2, name: "KOCMOC UNLEASHED 19-91%", player: "Arshadow", hoverColor: "#ffffff" },
+    { id: 3, name: "Society 72%", player: "wPopoff", hoverColor: "#9fa8da" }
 ];
 
 function render() {
@@ -160,8 +172,10 @@ function render() {
 
     listElement.innerHTML = "";
 
+    // Search matches either the level name or the player name
     let filtered = achievements.filter(item => 
-        item.name.toLowerCase().includes(searchVal)
+        item.name.toLowerCase().includes(searchVal) || 
+        item.player.toLowerCase().includes(searchVal)
     );
 
     if (sortVal === "alphabetical") {
@@ -173,9 +187,11 @@ function render() {
     filtered.forEach(item => {
         const card = document.createElement("div");
         card.className = "card";
-        // Passing the custom hover color straight into the card's style system
         card.style.setProperty('--hover-color', item.hoverColor);
-        card.innerHTML = `<div class="name">#${item.id} ${item.name}</div>`;
+        card.innerHTML = `
+            <div class="name">#${item.id} ${item.name}</div>
+            <div class="achieved-by">Achieved by: <strong>${item.player}</strong></div>
+        `;
         listElement.appendChild(card);
     });
 }
